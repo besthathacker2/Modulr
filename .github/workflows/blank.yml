@@ -27,8 +27,12 @@ jobs:
 
       - run: |
           tar -xzf modulr-os-buildsystem.tar.gz
+          git clone https://salsa.debian.org/live-team/live-build.git
+          cd live-build
+          sudo make install
+          cd
           cd modulr-os
-          sudo apt install live-build debootstrap xorriso squashfs-tools
+          sudo apt install debootstrap xorriso squashfs-tools
           sudo bash build.sh both
       - uses: actions/upload-artifact@v4
         with:
